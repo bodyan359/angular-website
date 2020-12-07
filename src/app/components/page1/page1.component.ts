@@ -1,28 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-page1',
   templateUrl: './page1.component.html',
   styleUrls: ['./page1.component.css']
 })
 export class Page1Component implements OnInit {
-  checkoutForm;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
-   }); 
-  }  
-  onSubmit(customerData: any) {
-    // Process checkout data here
-    this.checkoutForm.reset();
+  myForm : FormGroup = new FormGroup({
+    "userName": new FormControl("",[Validators.required,Validators.pattern("^[-a-zA-Z]+$")]),
+    "userSurname": new FormControl("",[Validators.required,Validators.pattern("^[-a-zA-Z]+$")]),
+    "userAge": new FormControl("",[Validators.required,Validators.pattern("^[0-9]+$")])
+});
 
-    console.warn('Your order has been submitted', customerData);
-  }
-
+  constructor(private router: Router) {}
+  submit(){
+    console.log(this.myForm.value);
+    this.router.navigate(['/Page2'],{ state: this.myForm.value });
+}
   ngOnInit(): void {
   }
 
