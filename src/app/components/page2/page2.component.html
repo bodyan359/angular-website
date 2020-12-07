@@ -1,17 +1,18 @@
-<div *ngIf="userName != null">
-<div class="alert alert-info" role="alert">
-   {{userName}} {{userSurname}}’s Page
-  </div>
-{{userAge}}
-<button >ACCESS</button>
-<div *ngIf="userAge > 18">
-
-
+<div class="page2" *ngIf="userName != null">
+    <div class="text-center alert alert-info" role="alert">
+        {{userName}} {{userSurname}}’s Page
+    </div>
+    <div class="col text-center">
+<button class="btn btn-success" #btn (click)="$any(btn).anyAttachedProperty = true">ACESS</button>
+    </div>
+<div  *ngIf="userAge > 18 && $any(btn).anyAttachedProperty">
+    <img src="https://eversis.com/wp-content/themes/eversis-web-theme/images/logo.svg" alt="Eversis logo" height="500" width="500">
 </div>
 
-<div *ngIf="userAge < 18">
+<div *ngIf="userAge < 18 && $any(btn).anyAttachedProperty">
     <div class="alert alert-danger" role="alert">
         You by at least 18 years old !
     </div>
 </div>
+
 </div>

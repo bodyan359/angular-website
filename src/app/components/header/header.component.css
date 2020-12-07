@@ -1,4 +1,9 @@
 .container {
   min-height: 100px;
-  
+}
+
+.col {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
 }
